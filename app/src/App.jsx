@@ -18,7 +18,6 @@ export default class App extends Component {
     return (
       <div>
         {logosRender}
-
         <div className="hello">
           <h1>Hello Reacheaioghoighoaehgoaet!</h1>
         </div>

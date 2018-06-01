@@ -2,13 +2,9 @@ const { app, BrowserWindow } = require("electron");
 
 // Let electron reloads by itself when webpack watches changes in ./app/
 require("electron-reload")(__dirname);
-
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
 function createWindow() {
-  // Create the browser window.
   mainWindow = new BrowserWindow({ width: 800, height: 600 });
 
   // and load the index.html of the app.
@@ -25,8 +21,6 @@ function createWindow() {
     mainWindow = null;
   });
 }
-
-// This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", createWindow); //GLAVNI

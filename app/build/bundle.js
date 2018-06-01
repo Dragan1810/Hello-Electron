@@ -196,7 +196,7 @@ eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./ap
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _App = _interopRequireDefault(__webpack_require__(/*! ./App.jsx */ \"./app/src/App.jsx\"));\n\n__webpack_require__(/*! ./global.css */ \"./app/src/global.css\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _reactDom.render)(_react.default.createElement(_App.default, null), document.getElementById('app'));\n\n//# sourceURL=webpack:///./app/src/renderer_process.js?");
+eval("\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _App = _interopRequireDefault(__webpack_require__(/*! ./App.jsx */ \"./app/src/App.jsx\"));\n\n__webpack_require__(/*! ./global.css */ \"./app/src/global.css\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n(0, _reactDom.render)(_react.default.createElement(_App.default, null), document.getElementById(\"app\"));\n\n//# sourceURL=webpack:///./app/src/renderer_process.js?");
 
 /***/ }),
 
