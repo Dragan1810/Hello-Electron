@@ -41,13 +41,8 @@ module.exports = {
           presets: [
             "@babel/preset-env",
             "@babel/preset-react",
-            "@babel/preset-stage-0"
-          ],
-          env: {
-            development: {
-              presets: ["react-hmre"]
-            }
-          }
+            ["@babel/preset-stage-0", { decoratorsLegacy: true }]
+          ]
         }
       },
       {
