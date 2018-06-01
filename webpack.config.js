@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   watch: true,
   target: "electron-renderer",
-  entry: "./app/src/renderer_process",
+  entry: ["@babel/polyfill", "./app/src/renderer_process"],
   output: {
     path: __dirname + "/app/build",
     publicPath: "build/",
