@@ -4,7 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   watch: true,
   target: "electron-renderer",
-  entry: "./app/src/renderer_process.js",
+  entry: "./app/src/renderer_process",
   output: {
     path: __dirname + "/app/build",
     publicPath: "build/",
@@ -14,12 +14,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /(\.js|\.ts)x?$|/,
+        exclude: /node_modules/,
         loader: "babel-loader",
         options: {
           presets: [
-            "@babel/preset-env",
-            "@babel/preset-react",
+            "@babel/env",
+            "@babel/react",
+            "@babel/typescript",
             ["@babel/preset-stage-0", { decoratorsLegacy: true }]
           ]
         }
@@ -52,6 +54,6 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: [".js", ".json", ".jsx"]
+    extensions: [".js", ".json", ".jsx", ".ts", ".tsx"]
   }
 };
