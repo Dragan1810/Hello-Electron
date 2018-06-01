@@ -1,43 +1,22 @@
 const path = require("path");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  devtool: "cheap-module-source-map",
-  context: path.resolve(__dirname, "src"),
-  entry: path.join(__dirname, "src", "index.js"),
+  watch: true,
+  target: "electron-renderer",
+  entry: "./app/src/renderer_process.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/dist/",
-    filename: "app.min.js"
+    path: __dirname + "/app/build",
+    publicPath: "build/",
+    filename: "bundle.js"
   },
-  mode: "development",
-  resolve: {
-    modules: [path.resolve(__dirname), "node_modules"]
-  },
+
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true
-            }
-          }
-        ],
-        exclude: /node_modules/
-      },
-      {
-        test: /node_modules\/.+\.css$/,
-        use: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.jsx?$/,
         loader: "babel-loader",
         options: {
-          cacheDirectory: true,
           presets: [
             "@babel/preset-env",
             "@babel/preset-react",
@@ -46,52 +25,33 @@ module.exports = {
         }
       },
       {
-        test: /\.woff\d?(\?.+)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          mimetype: "application/font-woff"
-        }
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          loader: "css-loader",
+          options: {
+            modules: true
+          }
+        })
       },
       {
-        test: /\.ttf(\?.+)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          mimetype: "application/octet-stream"
-        }
-      },
-      {
-        test: /\.eot(\?.+)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000
-        }
-      },
-      {
-        test: /\.svg(\?.+)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          mimetype: "image/svg+xml"
-        }
-      },
-      {
-        test: /\.png$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          mimetype: "image/png"
-        }
-      },
-      {
-        test: /\.gif$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          mimetype: "image/gif"
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: "file-loader",
+        query: {
+          name: "[name].[ext]?[hash]"
         }
       }
     ]
+  },
+
+  plugins: [
+    new ExtractTextPlugin({
+      filename: "bundle.css",
+      disable: false,
+      allChunks: true
+    })
+  ],
+
+  resolve: {
+    extensions: [".js", ".json", ".jsx"]
   }
 };
