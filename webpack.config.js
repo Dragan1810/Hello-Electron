@@ -33,6 +33,24 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          cacheDirectory: true,
+          presets: [
+            "@babel/preset-env",
+            "@babel/preset-react",
+            "@babel/preset-stage-0"
+          ],
+          env: {
+            development: {
+              presets: ["react-hmre"]
+            }
+          }
+        }
+      },
+      {
         test: /\.woff\d?(\?.+)?$/,
         loader: "url-loader",
         options: {
@@ -82,24 +100,3 @@ module.exports = {
     ]
   }
 };
-
-/*
-{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-        options: {
-          cacheDirectory: true,
-          presets: ["env", "react", "stage-0"],
-          plugins: ["transform-runtime"],
-          env: {
-            development: {
-              presets: ["react-hmre"]
-            },
-            production: {
-              presets: ["react-optimize"]
-            }
-          }
-        }
-      },
-*/

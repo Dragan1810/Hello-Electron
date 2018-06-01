@@ -1,1 +1,4 @@
-console.log("JHeloo");
+import React from "react";
+import { render } from "react-dom";
+
+render(<div>Jello</div>, document.getElementById("app"));
