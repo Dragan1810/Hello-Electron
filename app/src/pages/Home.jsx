@@ -1,17 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Observable, from } from "rxjs";
 
 import db from "../db/index";
+import getCrunchy from "../api/crunchyroll";
 
 export default class extends React.Component {
   constructor() {
     super();
     this.state = {};
-    this.init();
+    getCrunchy();
   }
-  async init() {
-    const info = await db.info();
-    console.log("DB INFO", info);
+  componentDidMount() {
+    this.sub = from(
+      db.series.changes({ since: 0, live: true, include_docs: true }),
+      "change"
+    ).subscribe(change => console.log("series db change: ", change));
+  }
+  componentWillUnmount() {
+    this.sub.unsubscribe();
   }
   render() {
     return (

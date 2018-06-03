@@ -1,18 +1,18 @@
-const cheerio = require("cheerio");
-const axios = require("axios");
+import { load } from "cheerio";
+import { get } from "axios";
 
 const baseURL = `http://www.crunchyroll.com/`;
 
-// skontaaaj
+import db from "../db/index";
 
 const getCrunchy = async (page = 0) => {
   try {
     //load catalog
-    const { data } = await axios.get(
+    const { data } = await get(
       `${baseURL}/videos/anime/popular/ajax_page?pg=${page}`
     );
     //create cheerio coursor
-    const $ = cheerio.load(data);
+    const $ = load(data);
     const series = $("li.group-item")
       .map((index, el) => {
         const element = $(el);
@@ -42,12 +42,11 @@ const getCrunchy = async (page = 0) => {
         };
       })
       .get();
-
-    console.log(series);
+    await db.series.bulkDocs(series);
+    return series;
   } catch (err) {
     console.error(err);
   }
 };
 
-getCrunchy();
-console.log("hello?");
+export default getCrunchy;
