@@ -1,31 +1,45 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { fromEvent } from "rxjs";
+import { fromEvent, pipe } from "rxjs";
+import { map, filter, scan, debounceTime } from "rxjs/operators";
 
 import db from "../db/index";
 import getCrunchy from "../api/crunchyroll";
 
+import Series from "../components/Series";
+
 export default class extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      series: []
+    };
     getCrunchy();
   }
   componentDidMount() {
     this.sub = fromEvent(
       db.series.changes({ since: 0, live: true, include_docs: true }),
       "change"
-    ).subscribe(change => console.log("series db change: ", change));
+    )
+      .pipe(
+        filter(change => !change.deleted),
+        map(change => change[0].doc),
+        scan((acc, doc) => [...acc, doc], []),
+        debounceTime(1000)
+      )
+      .subscribe(series => this.setState({ series }));
   }
   componentWillUnmount() {
     //this.sub.unsubscribe();
   }
   render() {
+    const { series } = this.state;
     return (
       <div>
         Hu
         <Link to="/about">About</Link>
-        <p>fjwaoijowia</p>
+        <hr />
+        {series.map(item => <Series key={item._id} series={item} />)}
       </div>
     );
   }
