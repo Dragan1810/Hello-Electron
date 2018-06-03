@@ -130,7 +130,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/es/index.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _default = function _default() {\n  return _react.default.createElement(\"div\", null, \"Hu\", _react.default.createElement(_reactRouterDom.Link, {\n    to: \"/about\"\n  }, _react.default.createElement(\"p\", null, \"fwjfowajf\")));\n};\n\nexports.default = _default;\n\n//# sourceURL=webpack:///./app/src/pages/Home.jsx?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n\nvar _react = _interopRequireDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/es/index.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _default = function _default() {\n  return _react.default.createElement(\"div\", null, \"Hu\", _react.default.createElement(_reactRouterDom.Link, {\n    to: \"/about\"\n  }, \"About\"), _react.default.createElement(\"p\", null, \"fjwaoijowia\"));\n};\n\nexports.default = _default;\n\n//# sourceURL=webpack:///./app/src/pages/Home.jsx?");
 
 /***/ }),
 
