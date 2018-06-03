@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Observable, from } from "rxjs";
+import { fromEvent } from "rxjs";
 
 import db from "../db/index";
 import getCrunchy from "../api/crunchyroll";
@@ -12,13 +12,13 @@ export default class extends React.Component {
     getCrunchy();
   }
   componentDidMount() {
-    this.sub = from(
+    this.sub = fromEvent(
       db.series.changes({ since: 0, live: true, include_docs: true }),
       "change"
     ).subscribe(change => console.log("series db change: ", change));
   }
   componentWillUnmount() {
-    this.sub.unsubscribe();
+    //this.sub.unsubscribe();
   }
   render() {
     return (
