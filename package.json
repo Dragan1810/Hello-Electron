@@ -36,6 +36,7 @@
     "@types/react-router-dom": "^4.2.7",
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
+    "pouchdb-browser": "^6.4.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.2.2"

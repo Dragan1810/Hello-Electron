@@ -5,7 +5,6 @@ import axios from "axios";
 
 import Home from "../src/pages/Home";
 import About from "../src/pages/About";
-
 export default class App extends Component {
   render() {
     return (
