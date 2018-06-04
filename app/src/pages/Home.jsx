@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "lodash";
 import { Link } from "react-router-dom";
 import { fromEvent, pipe } from "rxjs";
 import { map, filter, scan, debounceTime } from "rxjs/operators";
@@ -35,12 +36,13 @@ export default class extends React.Component {
   render() {
     const { series } = this.state;
     return (
-      <div>
-        Hu
-        <Link to="/about">About</Link>
-        <hr />
-        {series.map(item => <Series key={item._id} series={item} />)}
-      </div>
+      <>
+        {_.chunk(series, 4).map((chunk, i) => (
+          <div key={`num-${i}`} className="columns">
+            {chunk.map(item => <Series key={item._id} series={item} />)}
+          </div>
+        ))}
+      </>
     );
   }
 }

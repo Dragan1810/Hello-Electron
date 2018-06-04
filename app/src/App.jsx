@@ -8,7 +8,7 @@ import About from "../src/pages/About";
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div className="container is-fluid">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
