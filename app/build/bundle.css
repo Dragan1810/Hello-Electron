@@ -8,26 +8,11 @@
 /*
  * Global CSS goes here, it requires to use :global before each style
  */
-html {
-  height: 100%;
-}
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin: auto;
-}
+
 #app {
   color: #2c3e50;
   font-family: Source Sans Pro, Helvetica, sans-serif;
   text-align: center;
-}
-#app p {
-  text-align: justify;
-}
-.hello {
-  color: var(--primary-color);
 }
 /*! bulma.io v0.7.1 | MIT License | github.com/jgthms/bulma */
 @-webkit-keyframes _1_7otw0aO_fNGUzEUwTAW1 {

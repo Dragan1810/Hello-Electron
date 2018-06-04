@@ -1,3 +1,11 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-export default () => <div>Huhoaiwhfaowfhwhfofha</div>;
+class About extends React.Component {
+  render() {
+    const { match } = this.props;
+    return <div>Episode: {match.params.id}</div>;
+  }
+}
+
+export default withRouter(About);

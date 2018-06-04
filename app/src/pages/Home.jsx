@@ -31,7 +31,7 @@ export default class extends React.Component {
       .subscribe(series => this.setState({ series }));
   }
   componentWillUnmount() {
-    //this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
   render() {
     const { series } = this.state;

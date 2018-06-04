@@ -8,24 +8,9 @@
 /*
  * Global CSS goes here, it requires to use :global before each style
  */
-:global html {
-  height: 100%;
-}
-:global body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin: auto;
-}
+
 :global #app {
   color: #2c3e50;
   font-family: Source Sans Pro, Helvetica, sans-serif;
   text-align: center;
-}
-:global #app p {
-  text-align: justify;
-}
-:global .hello {
-  color: var(--primary-color);
 }
