@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import axios from "axios";
 
 import Home from "../src/pages/Home";
-import About from "../src/pages/About";
+import Series from "../src/pages/Series";
 
 export default class App extends Component {
   render() {
@@ -12,7 +12,7 @@ export default class App extends Component {
       <div className="container is-fluid">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/series/:id" component={About} />
+          <Route path="/series/:id" component={Series} />
           <Route component={Home} />
         </Switch>
       </div>

@@ -2,21 +2,24 @@ import React from "react";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 import { fromEvent, pipe } from "rxjs";
-import { map, filter, scan, debounceTime } from "rxjs/operators";
+// our packages
+import db from "../db";
+import { getCrunchyEpisode } from "../api/crunchyroll";
+// our components
+import Episode from "../components/episode";
 
-import db from "../db/index";
-import { getCrunchySeries } from "../api/crunchyroll";
+export default class Series extends React.Component {
+  constructor(props) {
+    super(props);
 
-import Series from "../components/Series";
-
-export default class extends React.Component {
-  constructor() {
-    super();
     this.state = {
-      series: []
+      episodes: []
     };
-    getCrunchySeries();
+    // trigger episodes loading
+    const { location } = props;
+    getCrunchyEpisode(location.state);
   }
+
   componentDidMount() {
     this.sub = fromEvent(
       db.series.changes({ since: 0, live: true, include_docs: true }),
@@ -33,16 +36,18 @@ export default class extends React.Component {
   componentWillUnmount() {
     this.sub.unsubscribe();
   }
+
   render() {
-    const { series } = this.state;
+    const { episodes } = this.state;
+
     return (
-      <>
-        {_.chunk(series, 4).map((chunk, i) => (
-          <div key={`num-${i}`} className="columns">
-            {chunk.map(item => <Series key={item._id} series={item} />)}
+      <div>
+        {_.chunk(episodes, 4).map((chunk, i) => (
+          <div key={`chunk_${i}`} className="columns">
+            {chunk.map(ep => <Episode key={ep._id} episode={ep} />)}
           </div>
         ))}
-      </>
+      </div>
     );
   }
 }
