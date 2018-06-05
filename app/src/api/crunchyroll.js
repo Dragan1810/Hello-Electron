@@ -5,7 +5,7 @@ const baseURL = `http://www.crunchyroll.com/`;
 
 import db from "../db/index";
 
-const getCrunchy = async (page = 0) => {
+export const getCrunchySeries = async (page = 0) => {
   try {
     //load catalog
     const { data } = await get(
@@ -52,4 +52,6 @@ const getCrunchy = async (page = 0) => {
   }
 };
 
-export default getCrunchy;
+export const getCrunchyEpisode = url => {
+  console.log("STUFF", url);
+};

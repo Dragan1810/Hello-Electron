@@ -5,7 +5,7 @@ import { fromEvent, pipe } from "rxjs";
 import { map, filter, scan, debounceTime } from "rxjs/operators";
 
 import db from "../db/index";
-import getCrunchy from "../api/crunchyroll";
+import { getCrunchySeries } from "../api/crunchyroll";
 
 import Series from "../components/Series";
 
@@ -15,7 +15,7 @@ export default class extends React.Component {
     this.state = {
       series: []
     };
-    getCrunchy();
+    getCrunchySeries();
   }
   componentDidMount() {
     this.sub = fromEvent(
