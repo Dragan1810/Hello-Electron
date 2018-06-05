@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+//import { withRouter } from "react-router-dom";
 
 class About extends React.Component {
   render() {
@@ -8,4 +8,4 @@ class About extends React.Component {
   }
 }
 
-export default withRouter(About);
+export default About;

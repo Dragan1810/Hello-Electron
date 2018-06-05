@@ -19,8 +19,8 @@ const getCrunchy = async (page = 0) => {
         // get title & url
         const a = $("a", element);
         const title = a.attr("title");
-        const id = a.attr("href");
-        const url = `${baseURL}${id}`;
+        const link_id = a.attr("href");
+        const url = `${baseURL}${link_id}`;
         // get image
         const img = $("img", element);
         const image = img.attr("src");
@@ -37,7 +37,7 @@ const getCrunchy = async (page = 0) => {
         // return series data
         return {
           source: "crunchyroll",
-          id,
+          link_id,
           title,
           url,
           image,

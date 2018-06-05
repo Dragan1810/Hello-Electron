@@ -39,7 +39,13 @@ export default class extends React.Component {
       <>
         {_.chunk(series, 4).map((chunk, i) => (
           <div key={`num-${i}`} className="columns">
-            {chunk.map(item => <Series key={item._id} series={item} />)}
+            {chunk.map(item => (
+              <Series
+                key={item._id}
+                series={item}
+                location={this.props.location}
+              />
+            ))}
           </div>
         ))}
       </>
