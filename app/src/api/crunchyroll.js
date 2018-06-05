@@ -54,12 +54,10 @@ export const getCrunchySeries = async (page = 0) => {
 
 export const getCrunchyEpisode = async url => {
   try {
-    console.log("gettin episodes for:", series);
     // load episodes
-    const { data } = await axios.get(series.url);
-    console.log(data);
+    const { data } = await get(url);
     // create cheerio cursor
-    const $ = cheerio.load(data);
+    const $ = load(data);
     const episodesContainer = $(".list-of-seasons ul.portrait-grid");
     const episodes = $(".group-item", episodesContainer)
       .map((index, el) => {
@@ -67,9 +65,7 @@ export const getCrunchyEpisode = async url => {
         const id = $("a.episode", element).attr("href");
         const url = `${baseURL}${id}`;
         const img = $("img", element);
-        console.log(img.parent().html());
         const image = img.attr("src") || img.attr("data-thumbnailurl");
-        console.log(img.attr("srt"), img.attr("data-thumbnailurl"), image);
         const title = $(".series-title", element)
           .text()
           .trim();
@@ -88,7 +84,7 @@ export const getCrunchyEpisode = async url => {
 
     // store in the db
     await db.episodes.bulkDocs(episodes);
-
+    console.log(episodes);
     return episodes;
   } catch (err) {
     console.error(err);

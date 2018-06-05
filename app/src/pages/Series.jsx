@@ -2,6 +2,8 @@ import React from "react";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 import { fromEvent, pipe } from "rxjs";
+import { map, filter, scan, debounceTime } from "rxjs/operators";
+
 // our packages
 import db from "../db";
 import { getCrunchyEpisode } from "../api/crunchyroll";
@@ -22,7 +24,11 @@ export default class Series extends React.Component {
 
   componentDidMount() {
     this.sub = fromEvent(
-      db.series.changes({ since: 0, live: true, include_docs: true }),
+      db.episodes.changes({
+        since: 0,
+        live: true,
+        include_docs: true
+      }),
       "change"
     )
       .pipe(
@@ -31,7 +37,7 @@ export default class Series extends React.Component {
         scan((acc, doc) => [...acc, doc], []),
         debounceTime(1000)
       )
-      .subscribe(series => this.setState({ series }));
+      .subscribe(episodes => this.setState({ episodes }));
   }
   componentWillUnmount() {
     this.sub.unsubscribe();
