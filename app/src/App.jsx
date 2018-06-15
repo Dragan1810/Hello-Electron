@@ -9,6 +9,7 @@ import ErrorScreen from "../src/pages/Error";
 
 export default class App extends Component {
   render() {
+    console.log(window.location);
     return (
       <div className="container is-fluid">
         <Switch>
